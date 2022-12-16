@@ -1,0 +1,15 @@
+{
+    "name": "demo-sacmn",
+    "version": "2.0.1",
+    "description": "sacmn",
+    "main": "index.html",
+    "scripts": {
+        "start": "node node_modules/live-server/live-server.js ../.. --open=/apps/acmn/ --cors"
+    },
+    "author": "client IO",
+    "license": "http://jointjs.com/license/rappid",
+    "private": true,
+    "devDependencies": {
+        "live-server": "1.1.0"
+    }
+}
