@@ -605,11 +605,21 @@ App.config = App.config || {};
                     image: {
                         'xlink:href': {
                             type: 'select-button-group',
-
                             options: options.imageIcons,
                             label: 'Image',
                             group: 'presentation',
                             index: 1
+                        },
+                        'opacity': {
+                            type: 'range',
+                            min: 0,
+                            max: 1,
+                            step: 0.1,
+                            // unit:'%',
+                            label:'Opacity',
+                            group:'presentation',
+                            when: { ne: { 'attrs/text/text': '' } },
+                            index: 2,
                         }
                     }
                 }

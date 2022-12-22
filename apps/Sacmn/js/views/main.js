@@ -326,8 +326,6 @@ var gdSave = window.gdSave;
                     input.click();
                 },
                 loadGraph: function() {
-
-
                     var jsonString = '{"cells":[{"type":"basic.Image","position":{"x":340,"y":400},"size":{"width":90,"height":70},"angle":0,"allowOrthogonalResize":false,"id":"331aa419-246b-4f03-848f-8684c8db59ee","z":1,"attrs":{"text":{"text":"Desc","fontSize":12,"fontFamily":"Arial, helvetica, sans-serif","refX":"0%","refY":"-55%","yAlignment":"middle","xAlignment":"middle"},".":{"data-tooltip-position":"left","data-tooltip-position-selector":".joint-stencil"},".body":{"fill":"transparent","rx":2,"ry":2,"stroke":"#31d0c6","stroke-width":2,"stroke-dasharray":"0"},"image":{"xlink:href":"assets/df.png"},".title":{"text":"ID","fill":"#000000","font-family":"Roboto Condensed","font-size":12,"font-weight":"Bold","text-decoration":"none","refX":"-30%","refY":"-85%","yAlignment":"middle","xAlignment":"middle"},".desc":{"text":"Title","fill":"#000000","font-family":"Roboto Condensed","font-weight":"Normal","font-size":10,"refX":"0%","refY":"-75%","yAlignment":"middle","xAlignment":"middle"}}},{"type":"basic.Image","position":{"x":470,"y":380},"size":{"width":90,"height":70},"angle":0,"allowOrthogonalResize":false,"id":"06648f76-9ef3-41ad-a9c6-ba5f84314051","z":2,"attrs":{"text":{"text":"Desc","fontSize":12,"fontFamily":"Arial, helvetica, sans-serif","refX":"0%","refY":"-55%","yAlignment":"middle","xAlignment":"middle"},".":{"data-tooltip-position":"left","data-tooltip-position-selector":".joint-stencil"},".body":{"fill":"transparent","rx":2,"ry":2,"stroke":"#31d0c6","stroke-width":2,"stroke-dasharray":"0"},"image":{"xlink:href":"assets/abstr.png"},".title":{"text":"ID","fill":"#000000","font-family":"Roboto Condensed","font-size":12,"font-weight":"Bold","text-decoration":"none","refX":"-35%","refY":"-85%","yAlignment":"middle","xAlignment":"middle"},".desc":{"text":"Title","fill":"#000000","font-family":"Roboto Condensed","font-weight":"Normal","font-size":10,"refX":"0%","refY":"-75%","yAlignment":"middle","xAlignment":"middle"}}},{"type":"basic.Image","position":{"x":250,"y":348},"size":{"width":90,"height":70},"angle":0,"allowOrthogonalResize":false,"id":"4e78d903-04cc-47fe-bc88-b8d259129f12","z":3,"attrs":{"text":{"text":"Desc","fontSize":12,"fontFamily":"Arial, helvetica, sans-serif","refX":"0%","refY":"-55%","yAlignment":"middle","xAlignment":"middle"},".":{"data-tooltip-position":"left","data-tooltip-position-selector":".joint-stencil"},".body":{"fill":"transparent","rx":2,"ry":2,"stroke":"#31d0c6","stroke-width":2,"stroke-dasharray":"0"},"image":{"xlink:href":"assets/df.png"},".title":{"text":"ID","fill":"#000000","font-family":"Roboto Condensed","font-size":12,"font-weight":"Bold","text-decoration":"none","refX":"-30%","refY":"-85%","yAlignment":"middle","xAlignment":"middle"},".desc":{"text":"Title","fill":"#000000","font-family":"Roboto Condensed","font-weight":"Normal","font-size":10,"refX":"0%","refY":"-75%","yAlignment":"middle","xAlignment":"middle"}}},{"type":"basic.Image","position":{"x":280,"y":490},"size":{"width":90,"height":70},"angle":0,"allowOrthogonalResize":false,"id":"8484a084-6a6d-40ce-82b3-7da21d9959aa","z":4,"attrs":{"text":{"text":"Desc","fontSize":12,"fontFamily":"Arial, helvetica, sans-serif","refX":"0%","refY":"-55%","yAlignment":"middle","xAlignment":"middle"},".":{"data-tooltip-position":"left","data-tooltip-position-selector":".joint-stencil"},".body":{"fill":"transparent","rx":2,"ry":2,"stroke":"#31d0c6","stroke-width":2,"stroke-dasharray":"0"},"image":{"xlink:href":"assets/abstr.png"},".title":{"text":"ID","fill":"#000000","font-family":"Roboto Condensed","font-size":12,"font-weight":"Bold","text-decoration":"none","refX":"-35%","refY":"-85%","yAlignment":"middle","xAlignment":"middle"},".desc":{"text":"Title","fill":"#000000","font-family":"Roboto Condensed","font-weight":"Normal","font-size":10,"refX":"0%","refY":"-75%","yAlignment":"middle","xAlignment":"middle"}}}]}';
                     joint.shapes.custom = {}
                     joint.shapes.custom.dummy = joint.shapes.basic.Image.extend({
@@ -350,9 +348,7 @@ var gdSave = window.gdSave;
                     downloadAnchorNode.setAttribute("download", id + ".json");
                     document.body.appendChild(downloadAnchorNode);
                     downloadAnchorNode.click();
-
-                },
-
+                }
             };
             toolbar.on({
                 'svg:pointerclick': _.bind(this.openAsSVG, this),
@@ -367,7 +363,8 @@ var gdSave = window.gdSave;
                 'grid-size:change': _.bind(this.paper.setGridSize, this.paper),
                 'load:pointerclick': toolbarCommands.loadGraph,
                 'tojson:pointerclick': toolbarCommands.toJSON,
-                'save:pointerclick': _.bind(toolbarCommands.saveGraph, this.graph)
+                'save:pointerclick': _.bind(toolbarCommands.saveGraph, this.graph),
+                'argumentgroup:pointerclick': _.bind(this.toGroup, this)
             });
 
             this.$('.toolbar-container').append(toolbar.el);
@@ -396,7 +393,6 @@ var gdSave = window.gdSave;
         },
 
         openAsSVG: function() {
-
             this.paper.toSVG(function(svg) {
                 new joint.ui.Lightbox({
                     title: '(Right-click, and use "Save As" to save the diagram in SVG format)',
@@ -413,6 +409,15 @@ var gdSave = window.gdSave;
                     image: dataURL
                 }).open();
             }, { padding: 10 });
+        },
+
+        toGroup: function() {
+            this.paper.toSVG(function(svg) {
+                new joint.ui.Lightbox({
+                    title: '(Right-click, and use "Save As" to save the diagram in SVG format)',
+                    image: 'data:image/svg+xml,' + encodeURIComponent(svg)
+                }).open();
+            }, { preserveDimensions: true, convertImagesToDataUris: true });
         },
 
         onMousewheel: function(cellView, evt, x, y, delta) {

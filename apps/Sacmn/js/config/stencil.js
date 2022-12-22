@@ -50,7 +50,8 @@ App.config = App.config || {};
                     'stroke-dasharray': '0'
                 },
                 image: {
-                    'xlink:href': 'assets/se.svg'
+                    'xlink:href': 'assets/se.svg',
+                    'opacity': '1'
                 },
                 text: {
                     text: 'Statement',
@@ -98,7 +99,8 @@ App.config = App.config || {};
                     'stroke-dasharray': '0'
                 },
                 image: {
-                    'xlink:href': 'assets/df.svg'
+                    'xlink:href': 'assets/df.svg',
+                    'opacity': '1'
                 },
                 text: {
                     text: 'Statement',
@@ -147,7 +149,8 @@ App.config = App.config || {};
                     'stroke-dasharray': '0'
                 },
                 image: {
-                    'xlink:href': 'assets/s1.svg'
+                    'xlink:href': 'assets/s1.svg',
+                    'opacity': '1'
                 },
                 text: {
                     text: 'Statement',
@@ -197,7 +200,8 @@ App.config = App.config || {};
                     'stroke-dasharray': '0'
                 },
                 image: {
-                    'xlink:href': 'assets/nsc.svg'
+                    'xlink:href': 'assets/nsc.svg',
+                    'opacity': '1'
                 },
                 text: {
                     text: 'Statement',
@@ -245,7 +249,8 @@ App.config = App.config || {};
                     'stroke-dasharray': '0'
                 },
                 image: {
-                    'xlink:href': 'assets/abstr.svg'
+                    'xlink:href': 'assets/abstr.svg',
+                    'opacity': '1'
                 },
                 text: {
                     text: 'Statement',
@@ -292,7 +297,8 @@ App.config = App.config || {};
                     'stroke-dasharray': '0'
                 },
                 image: {
-                    'xlink:href': 'assets/ascited.svg'
+                    'xlink:href': 'assets/ascited.svg',
+                    'opacity': '1'
                 },
                 text: {
                     text: 'Statement',
@@ -342,7 +348,8 @@ App.config = App.config || {};
                 image: {
                     width: 70,
                     height: 72,
-                    'xlink:href': 'assets/ass.svg'
+                    'xlink:href': 'assets/ass.svg',
+                    'opacity': '1'
                 },
                 text: {
                     text: 'Statement',
@@ -393,7 +400,8 @@ App.config = App.config || {};
                 image: {
                     width: 70,
                     height: 72,
-                    'xlink:href': 'assets/vec1.svg'
+                    'xlink:href': 'assets/vec1.svg',
+                    'opacity': '1'
                 },
                 text: {
                     text: 'Statement',
@@ -444,7 +452,8 @@ App.config = App.config || {};
                 image: {
                     width: 70,
                     height: 72,
-                    'xlink:href': 'assets/vec2.svg'
+                    'xlink:href': 'assets/vec2.svg',
+                    'opacity': '1'
                 },
                 text: {
                     text: 'Statement',
@@ -495,7 +504,8 @@ App.config = App.config || {};
                 image: {
                     width: 70,
                     height: 72,
-                    'xlink:href': 'assets/vec8.svg'
+                    'xlink:href': 'assets/vec8.svg',
+                    'opacity': '1'
                 },
                 text: {
                     text: 'Statement',
@@ -546,7 +556,8 @@ App.config = App.config || {};
                 image: {
                     width: 70,
                     height: 72,
-                    'xlink:href': 'assets/vec3.svg'
+                    'xlink:href': 'assets/vec3.svg',
+                    'opacity': '1'
                 },
                 text: {
                     text: 'description',
@@ -598,7 +609,8 @@ App.config = App.config || {};
                 image: {
                     width: 70,
                     height: 72,
-                    'xlink:href': 'assets/vec4.svg'
+                    'xlink:href': 'assets/vec4.svg',
+                    'opacity': '1'
                 },
                 text: {
                     text: 'description',
@@ -649,7 +661,8 @@ App.config = App.config || {};
                 image: {
                     width: 70,
                     height: 72,
-                    'xlink:href': 'assets/vec5.svg'
+                    'xlink:href': 'assets/vec5.svg',
+                    'opacity': '1'
                 },
                 text: {
                     text: 'description',
@@ -685,8 +698,6 @@ App.config = App.config || {};
 
 
     App.config.stencil.shapes.line = [{
-
-
             type: 'basic.Image',
             size: { width: 45, height: 35 },
             allowOrthogonalResize: false,

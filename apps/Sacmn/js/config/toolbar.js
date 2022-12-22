@@ -147,7 +147,7 @@ App.config = App.config || {};
                 text: 'Argument Group',
                 attrs: {
                     button: {
-                        id: 'btn-argumentgroup',
+                        // id: 'btn-argumentgroup',
                         'data-tooltip': 'Open features as Argument Group in a pop-up',
                         'data-tooltip-position': 'top',
                         'data-tooltip-position-selector': '.toolbar-container'
