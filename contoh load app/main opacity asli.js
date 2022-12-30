@@ -226,44 +226,13 @@ var gdSave = window.gdSave;
 
             }, this);
 
-            this.paper.on('link:pointerdown', function(linkView, evt) {
-
-                // Select an element if CTRL/Meta key is pressed while the element is clicked.
-                if (this.keyboard.isActive('ctrl meta', evt)) {
-                    this.selection.collection.add(linkView.model);
-                }
-
-            }, this);
-
-            this.selection.on('selection-box:pointerdown', function(elementView, evt) {
-
-                // Unselect an element if the CTRL/Meta key is pressed while a selected element is clicked.
-                if (this.keyboard.isActive('ctrl meta', evt)) {
-                    this.selection.collection.remove(elementView.model);
-                }
-
-            }, this);
-
-            this.selection.on('selection-box:pointerdown', function(linkView, evt) {
-
-                // Unselect an element if the CTRL/Meta key is pressed while a selected element is clicked.
-                if (this.keyboard.isActive('ctrl meta', evt)) {
-                    this.selection.collection.remove(linkView.model);
-                }
-
-            }, this);
-
             this.selection.collection.on('reset add remove', function() {
                 // Print types of all the elements in the selection.
                 // console.log(this.selection.collection.pluck('type'));
                 console.log(this.pluck('type'));
             });
 
-            var graph = this.graph;
             this.selection.addHandle({ name: 'myaction', position: 's', icon: 'assets/myaction.png' });
-            this.selection.addHandle({ name: 'myaction1', position: 'ne', icon: 'assets/buttonaction.png'});
-            // this.selection.addHandle({ name: 'myaction1', position: 'e', text: 'submit'});
-            // this.selection.addHandle({ name: 'myaction1', position: 'e', icon: 'assets/buttonaction.png'});
             this.selection.on('action:myaction:pointerdown', function(evt) {
                 evt.stopPropagation();
                 // alert('My custom action.');
@@ -277,8 +246,8 @@ var gdSave = window.gdSave;
 
                 var dialog = new joint.ui.Dialog({
                     width: 300,
-                    title: 'Argument Group',
-                    content: '<span style="font-weight: 300"><label class="with-output">Opacity : </label><span class="units"></span><input id="range-2" min="0" max="1" step="0.1" name="range-2" type="text"></span>',
+                    title: 'Opacity',
+                    content: '<span style="font-weight: 300"><label class="with-output">Opacity</label><span class="units"></span><input id="range-2" min="0" max="1" step="0.1" name="range-2" type="text"></span>',
                     buttons: [{action: 'apply', content: 'Apply'}]
                 });
                 dialog.open();
@@ -294,7 +263,6 @@ var gdSave = window.gdSave;
                     //     //cell.colorPalette.remove();
                     // },
                     'action:apply': function () {
-
                         // var opac = $('#range-opac').val();
                         var opac = $('#range-2').val();
                         for(var e in models) {
@@ -302,13 +270,10 @@ var gdSave = window.gdSave;
                             // this.collection.models[e].attr('text/opacity', 0.1);
                             // this.collection.models[e].attr('image/opacity', 0.1);
                             
+
                             models[e].attr('.title/opacity', opac);
                             models[e].attr('text/opacity', opac);
                             models[e].attr('image/opacity', opac);
-                            models[e].attr('.connection/opacity', opac);
-                            models[e].attr('.marker-source/opacity', opac);
-                            models[e].attr('.marker-target/opacity', opac);
-
                         }
 
                         dialog.close();
@@ -319,72 +284,9 @@ var gdSave = window.gdSave;
                 
             });
 
-            this.selection.on('action:myaction1:pointerdown', function(evt) {
-                evt.stopPropagation();
-                // alert('My custom action.');
-                console.log(this.collection.pluck('type'));
-
-                var dialog = new joint.ui.Dialog({
-                    width: 300,
-                    title: 'Argument Group',
-                    content: '<span style="font-weight: 300"><label class="with-output">Outline Border : </label><span class="units"></span><input id="range-1" name="range-1"></span>',
-                    buttons: [{action: 'yes', content: 'Yes'}]
-                    // buttons: [{action: 'no', content: 'No'}],
-                    // position: 'left-to-right'
-                });
-                var selectBox = new joint.ui.SelectBox({
-                    width: 200,
-                    options: [
-                        { content: 'Solid' },
-                        { content: 'Dotted', selected: true },
-                        { content: 'Dashed' }
-                    ]
-                });
-                // this.selection.appendChild(selectBox.render().el);
-                
-                // var selectBox = new joint.ui.SelectBox({
-                //     width: 200,
-                //     options: [
-                //         { content: 'Solid' },
-                //         { content: 'Dotted', selected: true },
-                //         { content: 'Dashed' }
-                //     ]
-                // });
-                // document.body.appendChild(selectBox.render().el);
-
-                dialog.open();
-
-                
-
-                var models = this.collection.models;
-                
-                dialog.on({
-
-                    'action:yes': function () {
-                        var rect = new joint.shapes.basic.Rect();
-                        // we want to have the `label` on the outside and under the `body` of the rectangle:
-                        rect.attr(['label'], { refY: '100%', textVerticalAnchor: 'top' });
-                        // normally, when a user tries to embed a child to the rectangle, the `root` subelement would be highlighted (the wrapper of `body` and `label`)
-                        // however, we want only the `body` to be highlighted, so we need to specify it as a proxy for `root`:
-                        rect.attr(['root', 'containerSelector'], 'body');
-    
-                        rect.addTo(graph);
-                        for(var e in models) {
-                            rect.embed(models[e]);
-
-                        }
-
-                        rect.fitEmbeds({deep: true});
-                        rect.toBack();
-
-                        dialog.close();
-                    }
-
-                });
-            
-            });
             // this.selection.on('element:contextmenu', function(evt) {
             //     evt.stopPropagation();
+            //     alert('My custom action.');
             //     console.log(this.collection.pluck('type'));
 
             //     for(var e in this.collection.models) {
@@ -396,7 +298,7 @@ var gdSave = window.gdSave;
             // });
 
         },
-
+        // batas sampai sini  multiple selection untuk opacity
         createInspector: function(cell) {
 
             return joint.ui.Inspector.create('.inspector-container', _.extend({
